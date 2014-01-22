@@ -1,3 +1,5 @@
+.gitignore
+
 # Laravel
 /bootstrap/compiled.php
 /vendor
@@ -20,4 +22,12 @@ composer.lock
 .idea/
 
 # Packages
-_ide_helpers.php
+app/_ide_helpers.php
+
+#eclipse stuff
+.buildpath
+.project
+.settings/
+
+# Local site configuations
+site.conf

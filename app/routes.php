@@ -1,7 +1,7 @@
 <?php
 
 /*
-|--------------------------------------------------------------------------
+ |--------------------------------------------------------------------------
 | Application Routes
 |--------------------------------------------------------------------------
 |
@@ -16,74 +16,58 @@
  *  ------------------------------------------
  */
 Route::model('user', 'User');
-Route::model('comment', 'Comment');
-Route::model('post', 'Post');
 Route::model('role', 'Role');
-
-/** ------------------------------------------
- *  Route constraint patterns
- *  ------------------------------------------
- */
-Route::pattern('comment', '[0-9]+');
-Route::pattern('post', '[0-9]+');
-Route::pattern('user', '[0-9]+');
-Route::pattern('role', '[0-9]+');
-Route::pattern('token', '[0-9a-z]+');
 
 /** ------------------------------------------
  *  Admin Routes
  *  ------------------------------------------
- */
+*/
 Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
 {
+	# User Management
+	Route::get('users/{user}/show', 'AdminUsersController@getShow')
+	->where('user', '[0-9]+');
+	Route::get('users/{user}/edit', 'AdminUsersController@getEdit')
+	->where('user', '[0-9]+');
+	Route::post('users/{user}/edit', 'AdminUsersController@postEdit')
+	->where('user', '[0-9]+');
+	Route::get('users/{user}/delete', 'AdminUsersController@getDelete')
+	->where('user', '[0-9]+');
+	Route::post('users/{user}/delete', 'AdminUsersController@postDelete')
+	->where('user', '[0-9]+');
+	Route::controller('users', 'AdminUsersController');
 
-    # Comment Management
-    Route::get('comments/{comment}/edit', 'AdminCommentsController@getEdit');
-    Route::post('comments/{comment}/edit', 'AdminCommentsController@postEdit');
-    Route::get('comments/{comment}/delete', 'AdminCommentsController@getDelete');
-    Route::post('comments/{comment}/delete', 'AdminCommentsController@postDelete');
-    Route::controller('comments', 'AdminCommentsController');
+	# User Role Management
+	Route::get('roles/{role}/show', 'AdminRolesController@getShow')
+	->where('role', '[0-9]+');
+	Route::get('roles/{role}/edit', 'AdminRolesController@getEdit')
+	->where('role', '[0-9]+');
+	Route::post('roles/{role}/edit', 'AdminRolesController@postEdit')
+	->where('role', '[0-9]+');
+	Route::get('roles/{role}/delete', 'AdminRolesController@getDelete')
+	->where('role', '[0-9]+');
+	Route::post('roles/{role}/delete', 'AdminRolesController@postDelete')
+	->where('role', '[0-9]+');
+	Route::controller('roles', 'AdminRolesController');
 
-    # Blog Management
-    Route::get('blogs/{post}/show', 'AdminBlogsController@getShow');
-    Route::get('blogs/{post}/edit', 'AdminBlogsController@getEdit');
-    Route::post('blogs/{post}/edit', 'AdminBlogsController@postEdit');
-    Route::get('blogs/{post}/delete', 'AdminBlogsController@getDelete');
-    Route::post('blogs/{post}/delete', 'AdminBlogsController@postDelete');
-    Route::controller('blogs', 'AdminBlogsController');
-
-    # User Management
-    Route::get('users/{user}/show', 'AdminUsersController@getShow');
-    Route::get('users/{user}/edit', 'AdminUsersController@getEdit');
-    Route::post('users/{user}/edit', 'AdminUsersController@postEdit');
-    Route::get('users/{user}/delete', 'AdminUsersController@getDelete');
-    Route::post('users/{user}/delete', 'AdminUsersController@postDelete');
-    Route::controller('users', 'AdminUsersController');
-
-    # User Role Management
-    Route::get('roles/{role}/show', 'AdminRolesController@getShow');
-    Route::get('roles/{role}/edit', 'AdminRolesController@getEdit');
-    Route::post('roles/{role}/edit', 'AdminRolesController@postEdit');
-    Route::get('roles/{role}/delete', 'AdminRolesController@getDelete');
-    Route::post('roles/{role}/delete', 'AdminRolesController@postDelete');
-    Route::controller('roles', 'AdminRolesController');
-
-    # Admin Dashboard
-    Route::controller('/', 'AdminDashboardController');
+	# Admin Dashboard
+	Route::controller('/', 'AdminDashboardController');
 });
 
-
 /** ------------------------------------------
- *  Frontend Routes
+ *  User Routes
  *  ------------------------------------------
- */
+*/
 
 // User reset routes
-Route::get('user/reset/{token}', 'UserController@getReset');
+Route::get('user/reset/{token}', 'UserController@getReset')
+->where('token', '[0-9a-z]+');
 // User password reset
-Route::post('user/reset/{token}', 'UserController@postReset');
+Route::post('user/reset/{token}', 'UserController@postReset')
+->where('token', '[0-9a-z]+');
 //:: User Account Routes ::
-Route::post('user/{user}/edit', 'UserController@postEdit');
+Route::post('user/{user}/edit', 'UserController@postEdit')
+->where('user', '[0-9]+');
 
 //:: User Account Routes ::
 Route::post('user/login', 'UserController@postLogin');
@@ -91,21 +75,33 @@ Route::post('user/login', 'UserController@postLogin');
 # User RESTful Routes (Login, Logout, Register, etc)
 Route::controller('user', 'UserController');
 
-//:: Application Routes ::
-
-# Filter for detect language
-Route::when('contact-us','detectLang');
+/** ------------------------------------------
+ *  Static Page Routes
+ *  ------------------------------------------
+*/
 
 # Contact Us Static Page
-Route::get('contact-us', function()
-{
-    // Return about us page
-    return View::make('site/contact-us');
+Route::get('contact-us', function (){
+	// Return about us page
+	return View::make('site/contact-us');
 });
 
-# Posts - Second to last set, match slug
-Route::get('{postSlug}', 'BlogController@getView');
-Route::post('{postSlug}', 'BlogController@postView');
+
+# The Privacy Policy Static Page
+Route::get('privacy', function (){
+	// Return Privacy Policy page
+	return View::make('site/privacy');
+});
+
+# The License Static Page
+Route::get('license', function (){
+	// Return License page
+	return View::make('site/license');
+});
+
 
 # Index Page - Last route, no matches
-Route::get('/', array('before' => 'detectLang','uses' => 'BlogController@getIndex'));
+Route::get('/', function (){
+	// Return License page
+	return View::make('site/index');
+});
