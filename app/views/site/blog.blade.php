@@ -1,13 +1,13 @@
 @extends('site.layouts.default')
 {{-- Web site Title --}}
 @section('title')
-{{{ Lang::get('site.terms') }}} ::
+{{{ Lang::get('site.blog') }}} ::
 @parent
 @stop
 
 {{-- Content --}}
 @section('content')
 
-<h2>Use Farm-To-Fork for Good!</h2>
+<h2>blog page</h2>
 
 @stop

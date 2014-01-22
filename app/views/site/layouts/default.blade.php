@@ -55,6 +55,10 @@
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav">
 						<li {{ (Request::is('/') ? ' class="active"' : '') }}><a href="{{{ URL::to('') }}}">Home</a></li>
+						<li {{ (Request::is('needs') ? ' class="active"' : '') }}><a href="{{{ URL::to('needs') }}}">Needs</a></li>
+						<li {{ (Request::is('locations') ? ' class="active"' : '') }}><a href="{{{ URL::to('locations') }}}">Locations</a></li>
+						<li {{ (Request::is('blog') ? ' class="active"' : '') }}><a href="{{{ URL::to('blog') }}}">Blog</a></li>
+						
 					</ul>
 
                     <ul class="nav navbar-nav pull-right">
