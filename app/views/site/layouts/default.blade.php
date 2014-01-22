@@ -31,19 +31,17 @@
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
 
-		<!-- Favicons
-		================================================== -->
-		<link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{{ asset('assets/ico/apple-touch-icon-144-precomposed.png') }}}">
-		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{{ asset('assets/ico/apple-touch-icon-114-precomposed.png') }}}">
-		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{{ asset('assets/ico/apple-touch-icon-72-precomposed.png') }}}">
-		<link rel="apple-touch-icon-precomposed" href="{{{ asset('assets/ico/apple-touch-icon-57-precomposed.png') }}}">
-		<link rel="shortcut icon" href="{{{ asset('assets/ico/favicon.png') }}}">
 	</head>
 
 	<body>
 		<!-- To make sticky footer need to wrap in a div -->
 		<div id="wrap">
 		<!-- Navbar -->
+		
+		<div id="logoContainer" class="container">
+			<a class="F2FLogo" href="{{{ URL::to('') }}}"><img alt="Homepage" src="/assets/ico/headerLogo.png"/></a>
+		</div>
+		
 		<div class="navbar navbar-default navbar-inverse navbar-fixed-top">
 			 <div class="container">
                 <div class="navbar-header">
@@ -97,7 +95,11 @@
 
 	    <div id="footer">
 	      <div class="container">
-	        <p class="muted credit">Laravel 4 Starter Site on <a href="https://github.com/andrew13/Laravel-4-Bootstrap-Starter-Site">Github</a>.</p>
+	        <p class="muted credit">Copyright © 2014 Dan Gillis et al. <a href="https://github.com/andrew13/Laravel-4-Bootstrap-Starter-Site">Github</a>
+		        <block class="pull-right">
+						<a href="/privacy">Privacy Policy</a> | <a href="/terms">Terms of Use</a> | <a href="/license">License</a> | <a href="/contact-us">Contact Us</a>
+				</block>
+			</p>
 	      </div>
 	    </div>
 

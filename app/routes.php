@@ -80,17 +80,16 @@ Route::controller('user', 'UserController');
  *  ------------------------------------------
 */
 
-# Contact Us Static Page
-Route::get('contact-us', function (){
-	// Return about us page
-	return View::make('site/contact-us');
-});
-
-
 # The Privacy Policy Static Page
 Route::get('privacy', function (){
 	// Return Privacy Policy page
 	return View::make('site/privacy');
+});
+
+# The Terms of Use Static Page
+Route::get('terms', function (){
+	// Return Terms of Use page
+	return View::make('site/terms');
 });
 
 # The License Static Page
@@ -99,6 +98,12 @@ Route::get('license', function (){
 	return View::make('site/license');
 });
 
+# Contact Us Static Page
+Route::get('contact-us', function (){
+	// Return about us page
+	return View::make('site/contact-us');
+});
+	
 
 # Index Page - Last route, no matches
 Route::get('/', function (){
