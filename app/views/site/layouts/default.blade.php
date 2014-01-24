@@ -6,7 +6,7 @@
 		<meta charset="utf-8" />
 		<title>
 			@section('title')
-			Laravel 4 Sample Site
+			Farm-To-Fork
 			@show
 		</title>
 		<meta name="keywords" content="your, awesome, keywords, here" />
@@ -39,10 +39,11 @@
 		<!-- Navbar -->
 		
 		<div id="logoContainer" class="container">
-			<a class="F2FLogo" href="{{{ URL::to('') }}}"><img alt="Homepage" src="/assets/ico/headerLogo.png"/></a>
+			<a class="F2FLogo" href="{{{ URL::to('') }}}"><img alt="Homepage" src="/assets/ico/headerLogo_small.png"/></a>
 		</div>
 		
-		<div class="navbar navbar-default navbar-inverse navbar-fixed-top">
+		<div id="trim"></div>	
+		<div class="navbar navbar-default navbar-inverse">
 			 <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -99,7 +100,7 @@
 
 	    <div id="footer">
 	      <div class="container">
-	        <p class="muted credit">Copyright © 2014 Dan Gillis et al. <a href="https://github.com/andrew13/Laravel-4-Bootstrap-Starter-Site">Github</a>
+	        <p class="muted credit">Copyright © 2014 farm-to-fork.ca All rights reserved.
 		        <block class="pull-right">
 						<a href="/privacy">Privacy Policy</a> | <a href="/terms">Terms of Use</a> | <a href="/license">License</a> | <a href="/contact-us">Contact Us</a>
 				</block>
