@@ -53,12 +53,15 @@
                         <span class="icon-bar"></span>
                     </button>
                 </div>
+
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
+                    
                     <ul class="nav navbar-nav">
-						<li {{ (Request::is('/') ? ' class="active"' : '') }}><a href="{{{ URL::to('') }}}">Home</a></li>
-						<li {{ (Request::is('needs') ? ' class="active"' : '') }}><a href="{{{ URL::to('needs') }}}">Needs</a></li>
-						<li {{ (Request::is('locations') ? ' class="active"' : '') }}><a href="{{{ URL::to('locations') }}}">Locations</a></li>
-						<li {{ (Request::is('blog') ? ' class="active"' : '') }}><a href="{{{ URL::to('blog') }}}">Blog</a></li>
+                     	<li class="LogoText"><a href="{{{ URL::to('') }}}" id="f2f-name">Farm<to>To</to><fork>Fork</fork></a></li>
+                     	<li {{ (Request::is('/') ? ' class="active"' : '') }}><a href="{{{ URL::to('') }}}">Home</a></li>                     						                    
+						<li {{ (Request::is('needs') ? ' class="active"' : '') }}><a href="{{{ URL::to('needs') }}}">NEEDS</a></li>
+						<li {{ (Request::is('locations') ? ' class="active"' : '') }}><a href="{{{ URL::to('locations') }}}">LOCATIONS</a></li>
+						<li {{ (Request::is('blog') ? ' class="active"' : '') }}><a href="{{{ URL::to('blog') }}}">BLOG</a></li>
 						
 					</ul>
 
