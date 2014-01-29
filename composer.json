@@ -1,12 +1,11 @@
 {
-    "name": "andrew13/Laravel-4-Bootstrap-Starter-Site",
-    "description": "Laravel 4 Starter Site",
-    "keywords": ["laravel","Starter Site"],
-    "license": "MIT",
+    "name": "bktz/Farm-To-Fork",
+    "description": "The Farm-To-Fork project from the University of Guelph.",
+    "keywords": ["laravel","F2F", "UoGuelph"],
+    "license": "Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License",
     "authors": [
         {
-            "name": "Andrew Elkins",
-            "homepage": "http://www.andrewelkins.com"
+            "name": "Dan Gillis et al."
         }
     ],
 	"require": {
