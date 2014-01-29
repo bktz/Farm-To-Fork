@@ -91,9 +91,7 @@ Route::get('locations', function (){
 });
 
 # The Blog Page
-Route::get('blog', function (){
-	return View::make('site/blog');
-});
+Route::get('blog', 'BlogController@index');
 
 /** ------------------------------------------
  *  Static Page Routes
