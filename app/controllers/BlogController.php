@@ -5,8 +5,9 @@ class BlogController extends BaseController {
 	private $numPosts = 4;
 
 	/**
-	 *
-	 * @param $numEntries number of entries to fetch from the farm-to-fork blog
+	 * Fetches the xml info for the Farm-To-Fork blog and converts it to be used
+	 * on the Farm-to-Fork site page
+	 * 
 	 */
 	public function index()
 	{
