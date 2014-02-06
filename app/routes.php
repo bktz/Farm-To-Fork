@@ -17,6 +17,7 @@
  */
 Route::model('user', 'User');
 Route::model('role', 'Role');
+Route::model('pantry', 'Pantry');
 
 /** ------------------------------------------
  *  Admin Routes
@@ -76,6 +77,12 @@ Route::post('user/login', 'UserController@postLogin');
 Route::controller('user', 'UserController');
 
 /** ------------------------------------------
+ *  RESTful Routes
+ *  ------------------------------------------
+ */
+Route::resource('pantry', 'PantryController');
+
+/** ------------------------------------------
  *  Content Loading Page Routes
  *  ------------------------------------------
  */
@@ -86,7 +93,7 @@ Route::get('needs', function (){
 });
 
 # The Pantry Locations by region Page
-Route::get('locations', 'LocationsController@index');
+Route::get('locations', 'PantryController@index');
 
 # The Blog Page
 Route::get('blog', 'BlogController@index');
