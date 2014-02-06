@@ -85,10 +85,8 @@ Route::get('needs', function (){
 	return View::make('site/needs');
 });
 
-# The Pantry Locations Page
-Route::get('locations', function (){
-	return View::make('site/locations');
-});
+# The Pantry Locations by region Page
+Route::get('locations', 'LocationsController@index');
 
 # The Blog Page
 Route::get('blog', 'BlogController@index');
