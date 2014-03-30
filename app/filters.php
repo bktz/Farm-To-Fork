@@ -114,7 +114,6 @@ Route::filter('detectLang',  function($route, $request, $lang = 'auto')
 
 	if ($lang != "auto" && in_array($lang , Config::get('app.available_language'))) {
 		Config::set('app.locale', $lang);
-
 	} else {
 		if (!empty($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
 			$browser_lang = strtok(strip_tags($_SERVER['HTTP_ACCEPT_LANGUAGE']), ',');
