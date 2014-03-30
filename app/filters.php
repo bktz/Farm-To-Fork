@@ -59,8 +59,9 @@ Route::filter('auth.basic', function()
 
 Route::filter('guest', function()
 {
-	if (Auth::check())
+	if (Auth::check()) {
 		return Redirect::to('user/login/');
+	}
 });
 
 /*
@@ -115,9 +116,19 @@ Route::filter('detectLang',  function($route, $request, $lang = 'auto')
 		Config::set('app.locale', $lang);
 
 	} else {
-		$browser_lang = !empty($_SERVER['HTTP_ACCEPT_LANGUAGE']) ? strtok(strip_tags($_SERVER['HTTP_ACCEPT_LANGUAGE']), ',') : '';
+		if (!empty($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
+			$browser_lang = strtok(strip_tags($_SERVER['HTTP_ACCEPT_LANGUAGE']), ',');
+		} else {
+			$browser_lang = '';
+		}
+
 		$browser_lang = substr($browser_lang, 0,2);
-		$userLang = (in_array($browser_lang, Config::get('app.available_language'))) ? $browser_lang : Config::get('app.locale');
+
+		if (in_array($browser_lang, Config::get('app.available_language'))) {
+			$userLang = $browser_lang;
+		} else {
+			$userLang = Config::get('app.locale');
+		}
 
 		Config::set('app.locale', $userLang);
 		App::setLocale($userLang);
