@@ -36,9 +36,9 @@ App::after(function($request, $response)
 Route::filter('auth', function()
 {
 	if (Auth::guest()) {
-        Session::put('loginRedirect', Request::url());
-        return Redirect::to('user/login/');
-    }
+		Session::put('loginRedirect', Request::url());
+		return Redirect::to('user/login/');
+	}
 });
 
 Route::filter('auth.basic', function()
@@ -59,7 +59,9 @@ Route::filter('auth.basic', function()
 
 Route::filter('guest', function()
 {
-	if (Auth::check()) return Redirect::to('user/login/');
+	if (Auth::check()) {
+		return Redirect::to('user/login/');
+	}
 });
 
 /*
@@ -93,8 +95,7 @@ Entrust::routeNeedsPermission( 'admin/roles*', 'manage_roles', Redirect::to('/ad
 
 Route::filter('csrf', function()
 {
-	if (Session::getToken() != Input::get('csrf_token') &&  Session::getToken() != Input::get('_token'))
-	{
+	if (Session::getToken() != Input::get('csrf_token') &&  Session::getToken() != Input::get('_token')) {
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
@@ -111,14 +112,24 @@ Route::filter('csrf', function()
 Route::filter('detectLang',  function($route, $request, $lang = 'auto')
 {
 
-    if($lang != "auto" && in_array($lang , Config::get('app.available_language')))
-    {
-        Config::set('app.locale', $lang);
-    }else{
-        $browser_lang = !empty($_SERVER['HTTP_ACCEPT_LANGUAGE']) ? strtok(strip_tags($_SERVER['HTTP_ACCEPT_LANGUAGE']), ',') : '';
-        $browser_lang = substr($browser_lang, 0,2);
-        $userLang = (in_array($browser_lang, Config::get('app.available_language'))) ? $browser_lang : Config::get('app.locale');
-        Config::set('app.locale', $userLang);
-        App::setLocale($userLang);
-    }
+	if ($lang != "auto" && in_array($lang , Config::get('app.available_language'))) {
+		Config::set('app.locale', $lang);
+	} else {
+		if (!empty($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
+			$browser_lang = strtok(strip_tags($_SERVER['HTTP_ACCEPT_LANGUAGE']), ',');
+		} else {
+			$browser_lang = '';
+		}
+
+		$browser_lang = substr($browser_lang, 0,2);
+
+		if (in_array($browser_lang, Config::get('app.available_language'))) {
+			$userLang = $browser_lang;
+		} else {
+			$userLang = Config::get('app.locale');
+		}
+
+		Config::set('app.locale', $userLang);
+		App::setLocale($userLang);
+	}
 });
